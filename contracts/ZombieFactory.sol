@@ -7,7 +7,6 @@ contract ZombieFactory {
     uint dnaDigits = 16;
     uint dnaModulus = 10 ** dnaDigits;
 
-    // start here
     struct Zombie{
         string name;
         uint dna;
@@ -38,5 +37,5 @@ contract ZombieFactory {
         uint randDna = _generateRandomDna(_name);
         _createZombie(_name, randDna);
     }
-
+    
 }
