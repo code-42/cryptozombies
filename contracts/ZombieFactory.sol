@@ -15,9 +15,15 @@ contract ZombieFactory {
 
     Zombie[] public zombies;
 
+    // A mapping is a key-value store
+    // mapping (uint => address) public zombieToOwner;
+    mapping (address => uint) ownerZombieCount;
+
     function _createZombie(string _name, uint _dna) private {
         uint id = zombies.push(Zombie(_name, _dna)) - 1;
-        // uint id = zombies.push() - 1;
+
+        zombieToOwner[id] = msg.sender;
+        ownerZombieCount[msg.sender]++;        
         NewZombie(id, _name, _dna);
     }
 
