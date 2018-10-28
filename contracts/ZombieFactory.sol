@@ -11,7 +11,7 @@ contract ZombieFactory {
         string name;
         uint dna;
     }
-
+ 
     Zombie[] public zombies;
 
     // A mapping is a key-value store
