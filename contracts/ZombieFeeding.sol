@@ -23,8 +23,6 @@ contract ZombieFeeding is ZombieFactory {
     // Initialize kittyContract here using `ckAddress` from above
     KittyInterface kittyContract = KittyInterface(ckAddress);
 
-
-
     function feedAndMultiply(uint _zombieId, uint _targetDna) public {
 
         // make sure we own this zombie
@@ -37,6 +35,13 @@ contract ZombieFeeding is ZombieFactory {
         uint newDna = (myZombie.dna + _targetDna) /2;
         _createZombie("NoName", newDna);
 
+    }
+
+    function feedOnKitty(uint _zombieId, uint _kittyId) public {
+        
+        uint kittyDna;
+        (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);
+        feedAndMultiply(_zombieId, kittyDna);
     }
     
 }
