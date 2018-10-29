@@ -46,6 +46,9 @@ contract ZombieFeeding is ZombieFactory {
         // myZombie is a storage pointer to the _zombieId passed in
         Zombie storage myZombie = zombies[_zombieId];
 
+        // 2. Add a check for `_isReady` here
+        require(_isReady(myZombie));
+
         _targetDna = _targetDna % dnaModulus;
         uint newDna = (myZombie.dna + _targetDna) /2;
 
@@ -57,6 +60,9 @@ contract ZombieFeeding is ZombieFactory {
         }
 
         _createZombie("NoName", newDna);
+
+        // 3. Call `triggerCooldown`
+        _triggerCooldown(myZombie);
 
     }
 
