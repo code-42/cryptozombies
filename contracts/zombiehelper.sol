@@ -27,6 +27,17 @@ contract ZombieHelper is ZombieFeeding {
     }
 
     function getZombiesByOwner(address _owner) external view returns(uint[]){
+        // return a uint[] array with all the zombies a particular user owns
+        uint[] memory result = new uint[](ownerZombieCount[_owner]);
+        // iterate through zombies array and add match to results
+        uint counter = 0;
+        for (uint i = 0; i < zombies.length; i++){
+            if (zombieToOwner[i] == _owner){
+                result[counter] = i;
+                counter++;
+            }
+        }
+        return result;
     
     }
 }
