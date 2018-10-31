@@ -19,6 +19,9 @@ contract ZombieFactory is ownable {
         // Add new data here
         uint32 level;
         uint32 readyTime;
+        // 1. Add new properties here
+        uint16 winCount;
+        uint16 lossCount;
     }
 
     Zombie[] public zombies;
@@ -27,7 +30,7 @@ contract ZombieFactory is ownable {
     mapping (address => uint) ownerZombieCount;
 
     function _createZombie(string _name, uint _dna) internal {
-        uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime))) - 1;
+        uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime), 0, 0)) - 1;
         zombieToOwner[id] = msg.sender;
         ownerZombieCount[msg.sender]++;
         NewZombie(id, _name, _dna);
