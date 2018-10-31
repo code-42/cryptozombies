@@ -20,5 +20,13 @@ contract ZombieBattle is ZombieHelper {
         Zombie storage myZombie = zombies[_zombieId];
         Zombie storage enemyZombie = zombies[_targetId];
         uint rand = randMod(100);
+
+        // update winCount and lossCount
+        if(rand <= attackVictoryProbability){
+            myZombie.winCount++;
+            myZombie.level++;
+            enemyZombie.lossCount++;
+            feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");
+        }
     }
 }
