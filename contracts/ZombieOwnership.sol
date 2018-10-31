@@ -1,6 +1,6 @@
 pragma solidity ^0.4.19;
 
-import "./zombieattack";
+import "./ZombieAttack";
 
 contract ZombieOwnership is ZombieAttack {
     
