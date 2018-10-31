@@ -1,7 +1,9 @@
 pragma solidity ^0.4.19;
 
-import "./ZombieAttack";
+import "./ZombieAttack.sol";
+import "./erc721.sol";
 
-contract ZombieOwnership is ZombieAttack {
+// multiple inheritance
+contract ZombieOwnership is ZombieAttack, ERC721 {
     
 }
