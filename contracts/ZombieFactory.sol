@@ -38,9 +38,12 @@ contract ZombieFactory is ownable {
     mapping (address => uint) ownerZombieCount;
 
     function _createZombie(string _name, uint _dna) internal {
+        // Note: We chose not to prevent the year 2038 problem... So don't need
+        // worry about overflows on readyTime. Our app is screwed in 2038 anyway ;)
         uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime), 0, 0)) - 1;
         zombieToOwner[id] = msg.sender;
-        ownerZombieCount[msg.sender]++;
+        // 3. Let's use SafeMath's `add` here:
+        ownerZombieCount[msg.sender] = ownerZombieCount[msg.sender].add(1);
         NewZombie(id, _name, _dna);
     }
 
