@@ -9,7 +9,8 @@ contract ZombieBattle is ZombieHelper {
     uint attackVictoryProbability = 70;
 
     function randMod(uint _modulus) internal returns(uint){
-        randNonce++;
+        // use SafeMath's `add` here:
+        randNonce = randNonce.add(1);
         return uint(keccak256(now, msg.sender, randNonce)) % _modulus;
     }
 
@@ -29,8 +30,8 @@ contract ZombieBattle is ZombieHelper {
             enemyZombie.lossCount = enemyZombie.lossCount.add(1);
             feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");
         } else {
-            myZombie.lossCount++;
-            enemyZombie.winCount++;
+            myZombie.lossCount = myZombie.lossCount.add(1);
+            enemyZombie.winCount = enemyZombie.winCount.add(1);
             _triggerCooldown(myZombie);
         }
     }
