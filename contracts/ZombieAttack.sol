@@ -23,9 +23,10 @@ contract ZombieBattle is ZombieHelper {
 
         // update winCount and lossCount
         if(rand <= attackVictoryProbability){
-            myZombie.winCount++;
-            myZombie.level++;
-            enemyZombie.lossCount++;
+            // use SafeMath's `add` here:
+            myZombie.winCount = myZombie.winCount.add(1);
+            myZombie.level = myZombie.level.add(1);
+            enemyZombie.lossCount = enemyZombie.lossCount.add(1);
             feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");
         } else {
             myZombie.lossCount++;
