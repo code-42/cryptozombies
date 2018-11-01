@@ -30,8 +30,11 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
         _transfer(msg.sender, _to, _tokenId);
     }
 
-    function approve(address _to, uint256 _tokenId) public {
-
+    // 2. Add function modifier here
+    function approve(address _to, uint256 _tokenId) public onlyOwnerOf(_tokenId) {
+        // 3. Define function here
+        zombieApprovals[_tokenId] = _to;
+        Approval(msg.sender, _to, _tokenId);
     }
 
     function takeOwnership(uint256 _tokenId) public {
