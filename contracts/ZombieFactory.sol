@@ -9,6 +9,10 @@ contract ZombieFactory is ownable {
 
     // 2. Declare using safemath here
     using SafeMath for uint256;
+    // 1. Declare using SafeMath32 for uint32
+    using SafeMath32 for uint32;
+    // 2. Declare using SafeMath16 for uint16
+    using SafeMath16 for uint16;
 
     event NewZombie(uint zombieId, string name, uint dna);
 
